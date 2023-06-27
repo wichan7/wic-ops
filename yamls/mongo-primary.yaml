@@ -1,0 +1,43 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongo-primary-0
+  namespace: wic
+  labels:
+    wic: mongo-primary
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+  clusterIP: None
+  selector:
+    wic: mongo-primary
+---
+kind: StatefulSet         # statefulset 생성
+apiVersion: apps/v1       # statefulset은 apps/v1 부터 지원함
+metadata:                 # sfs의 metadata 지정
+  name: mongo-primary     # sfs 이름, 다만 pod 생성 시 {sfs명}-{번호} 로 네이밍됨
+  namespace: wic
+spec:                     # sfs의 spec을 지정
+  replicas: 1             # 레플리카 개수 지정
+  selector:               # 파드를 매핑할 셀렉터 지정
+    matchLabels:
+      wic: mongo-primary
+  template:               
+    metadata:             # pod의 metadata 지정
+      labels:
+        wic: mongo-primary
+    spec:                 # pod의 spec을 지정
+      volumes:
+        - name: mongodata # mongodata라는 이름의 볼륨을 찾아 노드의 /app/mongo에 마운트
+          hostPath:
+            path: /app/mongo
+      containers:
+        - name: mongo-primary-container
+          image: mongo:6.0.5
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+          volumeMounts:
+            - name: mongodata
+              mountPath: /data/db         # 파드의 /data/db를 mongodata라는 이름으로 지정
