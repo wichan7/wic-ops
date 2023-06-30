@@ -7,8 +7,8 @@ metadata:
     wic: redis-primary
 spec:
   ports:
-  - port: 27017
-    targetPort: 27017
+  - port: 6379
+    targetPort: 6379
   clusterIP: None
   selector:
     wic: redis-primary
@@ -36,7 +36,7 @@ spec:                     # sfs의 spec을 지정
         - name: redis-primary-container
           image: redis:6.0.5
           ports:
-            - containerPort: 27017
+            - containerPort: 6379
               protocol: TCP
           volumeMounts:
             - name: redisdata

@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wic-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: wic-api
+  ports:
+    - name: api
+      port: 3311
+      targetPort: 3311
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wic-api-deployment
+  labels:
+    app: wic-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wic-api
+  template:
+    metadata:
+      labels:
+        app: wic-api
+    spec:
+      containers:
+      - name: wic-api
+        image: wic-api:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: 8080
+        - name: MONGO_URI
+          value: MONGO_URI=mongodb://wic-mongo:27017/wic
