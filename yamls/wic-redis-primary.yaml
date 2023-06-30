@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: redis-primary-0
+  name: redis-primary
   namespace: wic
   labels:
     wic: redis-primary
@@ -34,7 +34,7 @@ spec:                     # sfs의 spec을 지정
             path: /app/redis
       containers:
         - name: redis-primary-container
-          image: redis:6.0.5
+          image: wichan7/redis:latest
           ports:
             - containerPort: 6379
               protocol: TCP

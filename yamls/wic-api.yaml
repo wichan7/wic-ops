@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wic-api-service
+  name: wic-api
+  namespace: wic
 spec:
   type: ClusterIP
   selector:
@@ -16,6 +17,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wic-api-deployment
+  namespace: wic
   labels:
     app: wic-api
 spec:
@@ -30,11 +32,11 @@ spec:
     spec:
       containers:
       - name: wic-api
-        image: wic-api:latest
+        image: wichan7/wic-api:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 3311
         env:
         - name: PORT
-          value: 8080
+          value: "3311"
         - name: MONGO_URI
-          value: MONGO_URI=mongodb://wic-mongo:27017/wic
+          value: "mongodb://mongo-primary-0:27017/wic"

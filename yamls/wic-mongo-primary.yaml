@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: mongo-primary-0
+  name: mongo-primary
   namespace: wic
   labels:
     wic: mongo-primary
@@ -34,7 +34,7 @@ spec:                     # sfs의 spec을 지정
             path: /app/mongo
       containers:
         - name: mongo-primary-container
-          image: mongo:6.0.5
+          image: wichan7/wic-mongo:latest
           ports:
             - containerPort: 27017
               protocol: TCP
