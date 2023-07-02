@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations: 
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: wic-ingress-nginx
+  namespace: wic
+spec:
+  rules:
+  # - host: -> domain이 없는 경우 생략 가능
+  - http:
+      paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: wic-api
+            port:
+              number: 3311
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: wic-app
+            port:
+              number: 8080
