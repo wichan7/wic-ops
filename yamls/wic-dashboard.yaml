@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wic-app
+  name: wic-dashboard
   namespace: wic
 spec:
   type: ClusterIP
   selector:
-    app: wic-app
+    app: wic-dashboard
   ports:
     - name: app
       port: 8080
@@ -16,23 +16,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wic-app-deployment
+  name: wic-dashboard-deployment
   namespace: wic
   labels:
-    app: wic-app
+    app: wic-dashboard
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wic-app
+      app: wic-dashboard
   template:
     metadata:
       labels:
-        app: wic-app
+        app: wic-dashboard
     spec:
       containers:
-      - name: wic-app
-        image: wichan7/wic-app:latest
+      - name: wic-dashboard
+        image: wichan7/wic-dashboard:0.0.1
         ports:
         - containerPort: 8080
         env:
