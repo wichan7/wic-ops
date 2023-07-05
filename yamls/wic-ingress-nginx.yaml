@@ -19,10 +19,10 @@ spec:
             name: wic-api
             port:
               number: 3311
-      - path: /app(/|$)(.*)
+      - path: /dashboard(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
-            name: wic-app
+            name: wic-dashboard
             port:
               number: 8080
