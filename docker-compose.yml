@@ -1,0 +1,32 @@
+version: '3'
+services:
+  wic-mongo:
+    build:
+      context: ./wic-mongo
+    image: wic-mongo:latest
+    ports:
+      - 27017:27017
+  wic-redis:
+    build:
+      context: ./wic-redis
+    image: wic-redis:latest
+    ports:
+      - 6379:6379
+  wic-api:
+    build:
+      context: ./wic-api
+    image: wic-api:latest
+    ports:
+      - 3311:3311
+    environment:
+      - PORT=3311
+      - MONGO_URI=mongodb://wic-mongo:27017/wic
+  wic-dashboard:
+    build:
+      context: ./wic-dashboard
+    image: wic-dashboard:latest
+    ports:
+      - 8080:8080
+    environment:
+      - PORT=8080
+      - MONGO_URI=mongodb://wic-mongo:27017/wic
