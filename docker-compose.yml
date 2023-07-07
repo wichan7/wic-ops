@@ -3,19 +3,19 @@ services:
   wic-mongo:
     build:
       context: ./wic-mongo
-    image: wic-mongo:latest
+    image: wichan7/wic-mongo:0.0.3
     ports:
       - 27017:27017
   wic-redis:
     build:
       context: ./wic-redis
-    image: wic-redis:latest
+    image: wichan7/wic-redis:0.0.3
     ports:
       - 6379:6379
   wic-api:
     build:
       context: ./wic-api
-    image: wic-api:latest
+    image: wichan7/wic-api:0.0.3
     ports:
       - 3311:3311
     environment:
@@ -24,7 +24,7 @@ services:
   wic-dashboard:
     build:
       context: ./wic-dashboard
-    image: wic-dashboard:latest
+    image: wichan7/wic-dashboard:0.0.3
     ports:
       - 8080:8080
     environment:
