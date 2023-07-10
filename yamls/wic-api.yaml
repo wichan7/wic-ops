@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: wic-api
-        image: wichan7/wic-api:latest
+        image: wichan7/wic-api:0.0.3
         ports:
         - containerPort: 3311
         env:

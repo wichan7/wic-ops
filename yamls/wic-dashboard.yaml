@@ -8,9 +8,9 @@ spec:
   selector:
     app: wic-dashboard
   ports:
-    - name: app
-      port: 8080
-      targetPort: 8080
+    - name: dashboard
+      port: 3310
+      targetPort: 3310
       protocol: TCP
 ---
 apiVersion: apps/v1
@@ -32,11 +32,11 @@ spec:
     spec:
       containers:
       - name: wic-dashboard
-        image: wichan7/wic-dashboard:0.0.1
+        image: wichan7/wic-dashboard:0.0.4
         ports:
-        - containerPort: 8080
+        - containerPort: 3310
         env:
         - name: PORT
-          value: "8080"
+          value: "3310"
         - name: MONGO_URI
           value: "mongodb://mongo-primary-0:27017/wic"
