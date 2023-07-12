@@ -26,7 +26,7 @@ services:
       context: ./wic-dashboard
     image: wichan7/wic-dashboard:0.0.3
     ports:
-      - 8080:8080
+      - 3310:3310
     environment:
-      - PORT=8080
+      - PORT=3310
       - MONGO_URI=mongodb://wic-mongo:27017/wic
