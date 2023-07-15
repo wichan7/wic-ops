@@ -24,7 +24,7 @@ services:
   wic-dashboard:
     build:
       context: ./wic-dashboard
-    image: wichan7/wic-dashboard:0.0.3
+    image: wichan7/wic-dashboard:0.0.5
     ports:
       - 3310:3310
     environment:
