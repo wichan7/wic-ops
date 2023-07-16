@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: wic-dashboard
-        image: wichan7/wic-dashboard:0.0.4
+        image: wichan7/wic-dashboard:0.0.5
         ports:
         - containerPort: 3310
         env:
