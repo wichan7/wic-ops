@@ -30,3 +30,5 @@ services:
     environment:
       - PORT=3310
       - MONGO_URI=mongodb://wic-mongo:27017/wic
+      - SECRET_KEY=ca2789aea21e027eae4632fd32372263c9cdcb32e0a91571926b40746fdd124a
+      - REFRESH_SECRET_KEY=591426d8fd049d8c68d75e62acef78a00f99fbf00c6d7253ebedbb48915c764b
